@@ -267,5 +267,7 @@ cmake-build-*/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
+# jacoco
+**/jacoco.exec
 
 # End of https://www.gitignore.io/api/android,androidstudio,intellij,kotlin
