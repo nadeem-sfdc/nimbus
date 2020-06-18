@@ -11,11 +11,11 @@ artifactoryPublish.mustRunAfter build
 
 publishing {
     publications {
-        mavenPublication(MavenPublication) {
+        nimbusPublication(MavenPublication) {
             artifact sourcesJar
             if (project.plugins.hasPlugin("com.android.library")) {
-                artifact("$buildDir/outputs/aar/${project.name}-debug.aar")
-//                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+//                artifact("$buildDir/outputs/aar/${project.name}-debug.aar")
+                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             } else {
                 artifact("$buildDir/libs/${project.name}-${version}.jar")
             }
@@ -52,6 +52,10 @@ publishing {
     }
 }
 
+artifactoryPublish {
+    publications(publishing.publications.nimbusPublication)
+}
+
 bintray {
     def versionFile = file('../../../lerna.json')
     def parsedVersion = new JsonSlurper().parseText(versionFile.text)
@@ -85,7 +89,7 @@ artifactory {
             password = project.findProperty('bintrayApiKey') ?: System.getenv('BINTRAY_API_KEY')
         }
         defaults {
-            publications('mavenPublication')
+            publications('nimbusPublication')
             publishArtifacts = true
             publishPom = true
         }

@@ -16,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName version
+        versionName VERSION
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -61,4 +61,4 @@ dokka {
 }
 
 apply from: rootProject.file('gradle/lint.gradle')
-
+apply from: rootProject.file('gradle/publishing.gradle')

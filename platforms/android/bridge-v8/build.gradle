@@ -41,6 +41,7 @@ android {
 dependencies {
     api project(":annotations")
     api project(":core")
+//    api project(path: ":core", "configuration": "default")
     api "com.salesforce.k2v8:k2v8:$k2v8_version"
     kapt project(":compiler-v8")
 
