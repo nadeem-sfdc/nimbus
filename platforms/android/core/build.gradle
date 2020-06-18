@@ -36,6 +36,13 @@ android {
     }
 }
 
+android.variantFilter { variant ->
+//    if (variant.name == 'release'){
+//        variant.ignore = true
+//    }
+    println("Variant for ${project.name} is ${variant.name}")
+}
+
 dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compileOnly "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlin_serialization_version"
@@ -60,4 +67,4 @@ dokka {
 }
 
 apply from: rootProject.file('gradle/lint.gradle')
-apply from: rootProject.file('gradle/publishing.gradle')
+//apply from: rootProject.file('gradle/publishing.gradle')

@@ -13,12 +13,12 @@ publishing {
     publications {
         nimbusPublication(MavenPublication) {
             artifact sourcesJar
-            if (project.plugins.hasPlugin("com.android.library")) {
+//            if (project.plugins.hasPlugin("com.android.library")) {
 //                artifact("$buildDir/outputs/aar/${project.name}-debug.aar")
-                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
-            } else {
-                artifact("$buildDir/libs/${project.name}-${version}.jar")
-            }
+//                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+//            } else {
+//                artifact("$buildDir/libs/${project.name}-${version}.jar")
+//            }
             groupId group
             artifactId project.name
             version version
@@ -26,7 +26,7 @@ publishing {
                 name.set(project.name)
                 url.set(POM_URL)
 
-//                packaging POM_PACKAGING
+                packaging POM_PACKAGING
                 version version
 
                 licenses {
@@ -52,9 +52,6 @@ publishing {
     }
 }
 
-artifactoryPublish {
-    publications(publishing.publications.nimbusPublication)
-}
 
 bintray {
     def versionFile = file('../../../lerna.json')
@@ -87,6 +84,7 @@ artifactory {
             repoKey = 'oss-snapshot-local'
             username = project.findProperty('bintrayUser') ?: System.getenv('BINTRAY_USER')
             password = project.findProperty('bintrayApiKey') ?: System.getenv('BINTRAY_API_KEY')
+            maven = true
         }
         defaults {
             publications('nimbusPublication')
@@ -95,6 +93,7 @@ artifactory {
         }
     }
     resolve {
-        repoKey = 'jcenter'
+        repoKey = 'libs-snapshot'
+        maven=true
     }
 }
