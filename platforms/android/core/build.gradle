@@ -37,8 +37,7 @@ android {
 }
 
 dependencies {
-    implementation project(":annotations")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compileOnly "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlin_serialization_version"
     compileOnly "com.eclipsesource.j2v8:j2v8:$j2v8_version"
     compileOnly "com.salesforce.k2v8:k2v8:$k2v8_version"

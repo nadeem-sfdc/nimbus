@@ -1,33 +1,11 @@
-import groovy.json.JsonSlurper
-
-apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
-    //noinspection DifferentStdlibGradleVersion
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(':annotations')
-    implementation "com.squareup:kotlinpoet:$kotlinpoet_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-metadata-jvm:$kotlin_metadata_version"
+    api "com.squareup:kotlinpoet:$kotlinpoet_version"
+    api "org.jetbrains.kotlinx:kotlinx-metadata-jvm:$kotlin_metadata_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlin_serialization_version"
-}
-
-buildscript {
-
-    def versionFile = file('../../../lerna.json')
-    def parsedVersion = new JsonSlurper().parseText(versionFile.text)
-    project.version = parsedVersion.version.toString()
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-repositories {
-    mavenCentral()
 }
 
 compileKotlin {
